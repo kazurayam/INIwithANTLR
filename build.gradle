@@ -22,7 +22,7 @@ dependencies {
     implementation 'com.google.guava:guava:28.2-jre'
 
     // ANTLR v4
-    antlr 'org.antlr:antlr4:4.7.2'
+    antlr 'org.antlr:antlr4:4.7.1'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
