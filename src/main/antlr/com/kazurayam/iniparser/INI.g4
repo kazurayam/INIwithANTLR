@@ -1,21 +1,45 @@
+/**
+ * https://github.com/afucher/yaip/blob/master/parser/IniFileGrammar.g4
+ */
+
 grammar INI;
 
 @header {
     package com.kazurayam.iniparser;
 }
 
-file: (ini)+
-    ;
+ini : (LINE_COMMENT | section)* EOF;
 
-ini : section (option)*
-    ;
+section : section_header key_values;
 
-section : '[' STRING ']'
-        ;
+section_header : LBRACK section_header_title RBRACK;
 
-option : STRING '=' STRING
-       ;
+section_header_title : text;
 
-COMMENT : ';'  ~[\r\n]* -> skip ;
-STRING  : [a-zA-Z0-9]+ ;
-WS      : [ \t\n\r]+ -> skip ;
+key_values : key_value*;
+
+key_value : key EQUALS value?;
+
+key : text;
+
+value : text;
+
+
+
+
+
+text :TEXT;
+TEXT: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' | '/' | '\\' | ':' | '*' | '.' | ',' | '@' | ' ' | '(' | ')')+;
+        //( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' | '/'| '\\' | ':')* ;
+
+//TEXT : ( ~('='|'\n') )*;
+
+EQUALS	: '=';
+
+LBRACK	: '['  ;
+
+RBRACK	: ']'  ;
+
+LINE_COMMENT : ';' ~('\n'|'\r')*  ->  channel(HIDDEN);
+
+WS  :   (('\r')? '\n' |  ' ' | '\t')+  -> skip;
