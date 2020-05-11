@@ -14,8 +14,9 @@ public class UpperCaseMethodListenerTest {
     @Test
     public void test_smoke() {
         // setup:
-        // we construct the lexer
+        // we have a Java code as a fixture
         String javaClassContent = "public class SampleClass { void DoSomething(){} }";
+        // we construct the lexer
         Java8Lexer java8Lexer = new Java8Lexer(CharStreams.fromString(javaClassContent));
         // we instantiate the parser
         CommonTokenStream tokens = new CommonTokenStream(java8Lexer);
