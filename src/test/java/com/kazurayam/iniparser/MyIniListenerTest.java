@@ -29,13 +29,12 @@ public class MyIniListenerTest {
         // we instantiate the listener
         StringWriter buffer = new StringWriter();
         MyIniListener listener = new MyIniListener(buffer);
-        // Lastly, we tell ANTLR to walk through the sample INI text
         walker.walk(listener, iniParser.ini());
         // print the buffer
         System.out.print(String.format("%s", buffer.toString()));
     }
 
-    private String createFixture() {
+    protected static String createFixture() {
         StringBuilder sb = new StringBuilder();
         sb.append("\n");
         sb.append("[DATABASE]\n");
