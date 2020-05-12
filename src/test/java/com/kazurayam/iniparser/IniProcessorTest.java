@@ -34,24 +34,4 @@ public class IniProcessorTest {
         assertTrue(result, result.contains("DATABASE"));
     }
 
-    @Test
-    public void test_process_richFixture_withMyIniListener() throws IOException {
-        // setup input:
-        File richFixture = new File("./src/test/fixture/iniparser/sample.ctl");
-        Reader reader = new InputStreamReader(
-                new FileInputStream(richFixture), IniApp.ENCODING);
-        // setup output:
-        StringWriter sw = new StringWriter();
-        // setup processor:
-        IniProcessor processor = new IniProcessor();
-        processor.setInput(reader);
-        processor.setINIListener(new MyIniListener(sw));
-        // when:
-        processor.process();
-        String result = sw.toString();
-        // then:
-        assertTrue(result.length() > 0);
-        assertTrue(result, result.contains("開発環境"));
-    }
-
 }
