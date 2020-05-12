@@ -21,6 +21,9 @@ dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:28.2-jre'
 
+    // https://mvnrepository.com/artifact/commons-cli/commons-cli
+    implementation group: 'commons-cli', name: 'commons-cli', version: '1.4'
+
     // ANTLR v4
     antlr 'org.antlr:antlr4:4.7.1'
 
